@@ -1,3 +1,4 @@
+#include "piece.h"
 #include "tetris.h"
 #include <SFML/Graphics.hpp>
 
@@ -11,7 +12,7 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(width, height), "Tetris");
   window.setPosition(sf::Vector2i(1000, 20));
   sf::RectangleShape square(sf::Vector2f(square_size, square_size));
-  square.setOutlineThickness(1);
+  square.setOutlineThickness(-1);
   square.setOutlineColor(sf::Color::Black);
   Tetris tetris(cols, rows);
 
@@ -27,9 +28,16 @@ int main() {
     for (int row = 0; row < rows; ++row) {
       for (int col = 0; col < cols; ++col) {
         square.setPosition(col * square_size, row * square_size);
-        square.setFillColor(tetris.GetColorAt(col, row));
+        square.setFillColor(tetris.get_color_at(col, row));
         window.draw(square);
       }
+    }
+    Piece piece(PieceType::L, Point{5, 5});
+    for (auto point : piece.get_blocks()) {
+      point += piece.get_position();
+      square.setPosition(point.x * square_size, point.y * square_size);
+      square.setFillColor(sf::Color::Red);
+      window.draw(square);
     }
     window.display();
   }
