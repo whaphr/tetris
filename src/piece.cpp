@@ -45,7 +45,7 @@ void Piece::move_left() { _position.x--; }
 
 void Piece::move_right() { _position.x++; }
 
-void Piece::move_down() { _position.y++; }
+void Piece::move_down(int dy) { _position.y += dy; }
 
 const std::vector<Point> &Piece::get_blocks() const { return _blocks; }
 

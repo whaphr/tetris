@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 
 enum class PieceType { NULL, I, O, T, S, Z, J, L };
@@ -23,7 +24,7 @@ public:
   void rotate_counterclockwise();
   void move_left();
   void move_right();
-  void move_down();
+  void move_down(int dy = 0);
   const std::vector<Point> &get_blocks() const;
   Point get_position() const;
   PieceType get_type() const;
